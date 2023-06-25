@@ -1,0 +1,22 @@
+{
+  "name": "screenshotter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "concurrently --kill-others \"tsc -w\" \"nodemon dist/index.js\"",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.3.1",
+    "concurrently": "^8.2.0",
+    "fastify": "^4.18.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "puppeteer": "^20.7.3",
+    "typescript": "^5.1.3"
+  }
+}
