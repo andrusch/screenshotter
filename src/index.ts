@@ -9,7 +9,18 @@ const opts: RouteShorthandOptions = {
       200: {
         type: "object",
         properties: {
-          pong: {
+          message: {
+            type: "string",
+          },
+        },
+      },
+      400: {
+        type: "object",
+        properties: {
+          message: {
+            type: "string",
+          },
+          error: {
             type: "string",
           },
         },
@@ -19,7 +30,7 @@ const opts: RouteShorthandOptions = {
 };
 
 server.get("/health", opts, async (request, reply) => {
-  return { pong: "It's Alive!" };
+  return { message: "It's Alive!" };
 });
 server.get("/screenshot", opts, async (request, reply) => {
   let url = undefined;
@@ -41,10 +52,10 @@ server.get("/screenshot", opts, async (request, reply) => {
       reply.header("Content-Length", screenshot.length);
       reply.send(screenshot);
     } else {
-      reply.status(500).send("Error generating screenshot");
+      reply.status(500).send({ message:"Error generating screenshot", error: "Unknown Error"});
     }
   } else {
-    reply.status(400).send("Missing url query parameter");
+    reply.status(400).send({ message:"Missing url query parameter", error: "Missing Parameter"});
   }
 });
 
